@@ -1,0 +1,15 @@
+---
+
+- name: Install NTP server
+  package:
+    name: ntp
+    state: present
+
+- name: Generate NTP config from template
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart ntp
